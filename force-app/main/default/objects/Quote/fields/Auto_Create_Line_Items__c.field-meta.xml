@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Create_Line_Items__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Trigger flag for flow to create quote line items from opportunity products</description>
+    <label>Auto-Create Line Items from Opportunity</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

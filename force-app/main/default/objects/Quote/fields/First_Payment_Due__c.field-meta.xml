@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>First_Payment_Due__c</fullName>
+    <description>First installment based on billing frequency and prorated total; one-off charges fully due in first payment</description>
+    <formula>CASE(
+  TEXT(Billing_Frequency__c),
+  &quot;Monthly&quot;,
+    ((Total_Payment_Due__c - IF(ISNULL(One_Off_Charges__c), 0, One_Off_Charges__c))
+      / CEILING(BLANKVALUE(Term_Length_Months__c, 12)))
+      + IF(ISNULL(One_Off_Charges__c), 0, One_Off_Charges__c),
+  &quot;Quarterly&quot;,
+    ((Total_Payment_Due__c - IF(ISNULL(One_Off_Charges__c), 0, One_Off_Charges__c))
+      / CEILING(BLANKVALUE(Term_Length_Months__c, 12) / 3))
+      + IF(ISNULL(One_Off_Charges__c), 0, One_Off_Charges__c),
+  &quot;Semi-Annual&quot;,
+    ((Total_Payment_Due__c - IF(ISNULL(One_Off_Charges__c), 0, One_Off_Charges__c))
+      / CEILING(BLANKVALUE(Term_Length_Months__c, 12) / 6))
+      + IF(ISNULL(One_Off_Charges__c), 0, One_Off_Charges__c),
+  &quot;Annually&quot;,
+    Total_Payment_Due__c,
+  &quot;One-time&quot;,
+    Total_Payment_Due__c,
+  Total_Payment_Due__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>First Payment Due</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

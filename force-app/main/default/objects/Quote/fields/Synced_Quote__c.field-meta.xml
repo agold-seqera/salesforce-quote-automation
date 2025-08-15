@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Synced_Quote__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates if this Quote is currently synced to the Opportunity. Only one Quote per Opportunity should have this set to true.</description>
+    <label>Synced Quote</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

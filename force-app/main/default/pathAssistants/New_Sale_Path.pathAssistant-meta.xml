@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Opportunity</entityName>
+    <fieldName>StageName</fieldName>
+    <masterLabel>New Sale Path</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Win_Loss_Reason__c</fieldNames>
+        <fieldNames>Win_Loss_Reason_Details__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Be sure to update the Win/Loss Reason prior to closing&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Closed Lost</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Win_Loss_Reason__c</fieldNames>
+        <fieldNames>Win_Loss_Reason_Details__c</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Be sure to update the Win/Loss Reason prior to closing&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Closed Won</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>POC_Needed__c</fieldNames>
+        <fieldNames>Current_Solution__c</fieldNames>
+        <fieldNames>Currently_Using_Nextflow__c</fieldNames>
+        <fieldNames>Current_Pains_Problems__c</fieldNames>
+        <fieldNames>Type_of_work__c</fieldNames>
+        <info>&lt;p&gt;Goal: Build trust, uncover pain, start early quantification.&lt;/p&gt;&lt;p&gt;Exit Criteria: Must have identified pain, use case &amp;amp; goal to solve.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Be sure to fill out all fields in the &amp;#39;Discovery&amp;#39; section of the Opportunity.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Click &amp;#39;Request POC&amp;#39; button if a POC is needed.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;You must enter at least one product line item to the Opportunity in order to advance to the next stage.&lt;/strong&gt;&lt;/p&gt;</info>
+        <picklistValueName>Discovery</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Synced_Quote__c</fieldNames>
+        <info>&lt;p&gt;You must generate a quote for management approval prior to sending pricing to the customer. Please press the New Quote button to proceed&lt;/p&gt;</info>
+        <picklistValueName>Negotiations/Contracting</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Economic_Buyer__c</fieldNames>
+        <fieldNames>Champion__c</fieldNames>
+        <fieldNames>Metrics_Value__c</fieldNames>
+        <fieldNames>Tech_Eval_Type__c</fieldNames>
+        <fieldNames>Demos__c</fieldNames>
+        <info>&lt;p&gt;Goal: Deepen buyer alignment, confirm deal potential.&lt;/p&gt;&lt;p&gt;Exit Criteria Alignment: Understand economic buyer, sponsor, and decision criteria.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;Be sure to fill out all fields in the &amp;#39;Qualification&amp;#39; section of the Opportunity&lt;/strong&gt;&lt;/p&gt;</info>
+        <picklistValueName>Qualification</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Decision_Criteria__c</fieldNames>
+        <fieldNames>Decision_Process__c</fieldNames>
+        <fieldNames>POC_Needed__c</fieldNames>
+        <fieldNames>Technical_Blockers__c</fieldNames>
+        <info>&lt;p&gt;Goal: Confirm buyer criteria, process, and readiness.&lt;/p&gt;&lt;p&gt;Exit Criteria Alignment: Decision criteria met, process known, ready for contracting.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;Be sure to fill out all fields in the &amp;#39;Validation&amp;#39; section of the Opportunity. &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;If a POC is requested, mark &amp;#39;POC Needed&amp;#39; as &amp;#39;Yes&amp;#39; and click the &amp;#39;Request POC&amp;#39; button to submit a POC request to management.&lt;/strong&gt;&lt;/p&gt;</info>
+        <picklistValueName>Validation</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>New_Sales_Opportunity</recordTypeName>
+</PathAssistant>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Create a clean Quote without any auto-generated line items. Use this when you want full control over the Quote line item setup process.</description>
+    <flowDefinition>Opportunity_Button_Create_Quote_Clean</flowDefinition>
+    <label>Create Quote</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

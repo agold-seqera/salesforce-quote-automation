@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Synced_Quote__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lookup to the Quote that is currently synced to this Opportunity. This field is automatically populated when a quote syncs back to the opportunity.</description>
+    <inlineHelpText>This field shows which quote is currently synced to this opportunity. Only one quote per opportunity can be synced at a time.</inlineHelpText>
+    <label>Synced Quote</label>
+    <referenceTo>Quote</referenceTo>
+    <relationshipLabel>Synced Opportunities</relationshipLabel>
+    <relationshipName>Synced_Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Lookup</type>
+</CustomField>

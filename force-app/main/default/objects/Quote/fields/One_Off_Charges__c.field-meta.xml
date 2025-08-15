@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>One_Off_Charges__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>Calculated by automation based on QuoteLineItem data with non-subscription Product Family</description>
+    <inlineHelpText>This field is automatically populated by system flows</inlineHelpText>
+    <label>One-Off Charges</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

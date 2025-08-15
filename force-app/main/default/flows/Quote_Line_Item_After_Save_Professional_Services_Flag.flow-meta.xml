@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Any_Professional_Services_Found</name>
+        <label>Any Professional Services Found?</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Set_Professional_Services_No</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Professional Services</defaultConnectorLabel>
+        <rules>
+            <name>Professional_Services_Exist</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_All_Quote_Line_Items</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Professional_Services_Yes</targetReference>
+            </connector>
+            <label>Professional Services Exist</label>
+        </rules>
+    </decisions>
+    <description>Automatically sets Professional Services field to Yes/No on Quote based on whether any QLI has Professional Service product family. Handles create, update, and delete scenarios.</description>
+    <environments>Default</environments>
+    <interviewLabel>Quote Line Item After Save | Professional Services Flag {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote Line Item After Save | Professional Services Flag</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_All_Quote_Line_Items</name>
+        <label>Get All Quote Line Items</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Any_Professional_Services_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>QuoteId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.QuoteId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Product_Family__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Professional Service</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>QuoteLineItem</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Set_Professional_Services_No</name>
+        <label>Set Professional Services = No</label>
+        <locationX>308</locationX>
+        <locationY>539</locationY>
+        <inputAssignments>
+            <field>Professional_Services__c</field>
+            <value>
+                <stringValue>No</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Quote</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Professional_Services_Yes</name>
+        <label>Set Professional Services = Yes</label>
+        <locationX>44</locationX>
+        <locationY>539</locationY>
+        <inputAssignments>
+            <field>Professional_Services__c</field>
+            <value>
+                <stringValue>Yes</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Quote</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_All_Quote_Line_Items</targetReference>
+        </connector>
+        <object>QuoteLineItem</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <triggerOrder>300</triggerOrder>
+</Flow>

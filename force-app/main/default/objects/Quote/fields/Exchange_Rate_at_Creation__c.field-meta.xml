@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exchange_Rate_at_Creation__c</fullName>
+    <description>Frozen exchange rate when quote was created to maintain currency consistency</description>
+    <externalId>false</externalId>
+    <label>Exchange Rate at Creation</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>6</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

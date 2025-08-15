@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Generate deployment inventory from staged metadata
+python3 scripts/generate_deployment_inventory.py
+
+# Re-stage the updated inventory doc if it changed
+git add docs/current/deployment_components_inventory.md

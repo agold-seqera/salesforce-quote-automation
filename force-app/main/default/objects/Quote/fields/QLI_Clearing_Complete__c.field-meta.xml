@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QLI_Clearing_Complete__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Internal flag to track whether auto-created QuoteLineItems have been cleared for this Quote. Prevents the clearing flow from running multiple times.</description>
+    <label>QLI Clearing Complete</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>
