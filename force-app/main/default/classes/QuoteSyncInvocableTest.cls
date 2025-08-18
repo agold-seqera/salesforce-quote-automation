@@ -18,7 +18,7 @@ private class QuoteSyncInvocableTest {
         
         // Create test products
         Product2 product1 = TestDataFactory.createProduct('Software Product', 'Software Subscriptions');
-        Product2 product2 = TestDataFactory.createProduct('Service Product', 'Professional Services');
+        Product2 product2 = TestDataFactory.createProduct('Service Product', 'Professional Service');
         insert new List<Product2>{product1, product2};
         
         // Create pricebook entries
