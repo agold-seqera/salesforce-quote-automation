@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Required - Awaiting PO</fullName>
+        <default>false</default>
+        <label>Required - Awaiting PO</label>
+    </customValue>
+    <customValue>
+        <fullName>Not Required</fullName>
+        <default>false</default>
+        <label>Not Required</label>
+    </customValue>
+    <customValue>
+        <fullName>Required - PO In House</fullName>
+        <default>false</default>
+        <label>Required - PO In House</label>
+    </customValue>
+    <masterLabel>PO Status</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

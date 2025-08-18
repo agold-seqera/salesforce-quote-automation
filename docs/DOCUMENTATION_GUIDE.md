@@ -9,16 +9,9 @@
 **Purpose**: Active project status and current system state  
 **Content**: Only the most current, actively relevant documentation
 
-#### **Production Deployment Complete (August 18, 2025)**
-- **august_15_2025_post_deployment_manual_configuration.md** - **CRITICAL**: Complete manual tasks checklist for Lightning page activation, Quote templates, and Slack configuration
-
-#### **Critical Production Fixes (August 18, 2025)**
-- **august_15_2025_automated_process_user_bypass_fix.md** - ✅ DEPLOYED: Universal automated process user validation bypass
-- **august_15_2025_quote_before_save_flow_fix.md** - ✅ DEPLOYED: Fixed missing Role filter in Quote Before Save flow  
-- **august_15_2025_slack_channel_configuration_note.md** - Slack channel update requirements for production
-
-#### **Project Setup**
-- **git_repository_setup_august_2025.md** - Git repository configuration and setup documentation
+#### **Active Production Tasks (August 18, 2025)**
+- **august_18_2025_production_deployment_complete.md** - **CURRENT**: Complete deployment summary with statistics, resolved issues, and next steps
+- **august_15_2025_post_deployment_manual_configuration.md** - **ACTIVE**: Manual tasks checklist for Lightning page activation, Quote templates, and Slack configuration
 
 *Note: This folder contains minimal files - only what's truly current and actively referenced for project management.*
 
@@ -52,8 +45,16 @@
 **Organization**: Chronological folders by implementation period
 
 #### **August 2025** (`docs/archive/august-2025/`)
-**Content**: Comprehensive project implementation, optimization, and testing enhancements
+**Content**: Complete project implementation, deployment, and production fixes
 
+**Production Deployment Fixes (August 15-18, 2025)**:
+- **august_15_2025_automated_process_user_bypass_fix.md** - ✅ COMPLETED: Universal automated process user validation bypass
+- **august_15_2025_production_deployment_status.md** - Historical deployment status (superseded by august_18 doc)
+- **august_15_2025_quote_before_save_flow_fix.md** - ✅ COMPLETED: Fixed missing Role filter in Quote Before Save flow
+- **august_15_2025_slack_channel_configuration_note.md** - Slack channel requirements (info moved to manual config doc)
+- **git_repository_setup_august_2025.md** - Git repository setup documentation (setup complete)
+
+**Earlier Implementation Work (August 14, 2025)**:
 - **august_14_2025_copado_deployment_validation.md** - Copado deployment validation and critical flow recovery
 - **august_14_2025_test_class_standards_compliance.md** - Test standards compliance implementation  
 - **august_14_2025_critical_documentation_fixes.md** - Documentation organization and cleanup
