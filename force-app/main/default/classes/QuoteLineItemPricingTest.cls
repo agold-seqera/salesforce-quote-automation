@@ -66,15 +66,17 @@ public class QuoteLineItemPricingTest {
         Test.stopTest();
         
         // Validate the generated Software Subscription QLI
-        QuoteLineItem softwareQLI = [
+        List<QuoteLineItem> softwareQLIs = [
             SELECT Id, UnitPrice, Quantity, Discount, TotalPrice, Annual_Amount__c, 
                    Total_Price__c, List_Price__c, Term_Length_Months__c, Product_Family__c,
                    Service_Start_Date__c, Service_End_Date__c
             FROM QuoteLineItem 
             WHERE QuoteId = :testQuote.Id 
             AND Product_Family__c = 'Software Subscriptions'
-            LIMIT 1
         ];
+        
+        System.assertEquals(1, softwareQLIs.size(), 'Should have exactly 1 Software Subscriptions QLI');
+        QuoteLineItem softwareQLI = softwareQLIs[0];
         
         // Validate field mappings from flow
         System.assertEquals(100000, softwareQLI.UnitPrice, 'UnitPrice should be annual amount (what reps work with)');
@@ -107,14 +109,16 @@ public class QuoteLineItemPricingTest {
         Test.stopTest();
         
         // Validate the generated Professional Service QLI
-        QuoteLineItem serviceQLI = [
+        List<QuoteLineItem> serviceQLIs = [
             SELECT Id, UnitPrice, Quantity, Discount, TotalPrice, Annual_Amount__c,
                    Total_Price__c, List_Price__c, Term_Length_Months__c, Product_Family__c
             FROM QuoteLineItem 
             WHERE QuoteId = :testQuote.Id 
             AND Product_Family__c = 'Professional Service'
-            LIMIT 1
         ];
+        
+        System.assertEquals(1, serviceQLIs.size(), 'Should have exactly 1 Professional Service QLI');
+        QuoteLineItem serviceQLI = serviceQLIs[0];
         
         // Validate field mappings
         System.assertEquals(10000, serviceQLI.UnitPrice, 'UnitPrice should be sales price from OLI');
