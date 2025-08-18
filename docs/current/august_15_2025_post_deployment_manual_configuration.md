@@ -8,6 +8,8 @@
 
 Several configuration items **cannot be deployed through metadata** and require manual setup in the target org after deployment. This includes Lightning page assignments, field additions to layouts, and logo usage setup.
 
+
+
 ## 📋 **Lightning Pages Requiring Manual Activation**
 
 ### **🎯 Quote Lightning Pages**
@@ -146,6 +148,51 @@ The Quote Record Page references `Account.Customer_Logo_Use__c` field which **do
 
 ---
 
+## 📄 **Quote Template Configuration**
+
+### **⚠️ Quote Templates Cannot Be Deployed via Metadata**
+
+Quote Templates are **not supported by the Salesforce Metadata API** and must be manually recreated in each org.
+
+**Manual Setup Required:**
+
+#### **Step 1: Export Template from Partial Org**
+1. **Login to partial org** (`seqera--partial`)
+2. Navigate to **Setup → Object Manager → Quote → Quote Templates**
+3. **Open existing quote template**
+4. **Document template configuration**:
+   - Template name and description
+   - Page layout and field positioning
+   - Header/footer content
+   - Line item table configuration
+   - Terms and conditions text
+   - Company branding elements
+5. **Take screenshots** of template layout for reference
+
+#### **Step 2: Create Template in Production**
+1. **Login to production org** (`seqera.my.salesforce.com`)
+2. Navigate to **Setup → Object Manager → Quote → Quote Templates**
+3. Click **New Quote Template**
+4. **Configure template** to match partial org:
+   - Set template name and description
+   - Configure page layout and field positioning
+   - Add header/footer content
+   - Set up line item table with proper columns
+   - Add terms and conditions
+   - Apply company branding
+5. **Add Seqera Logo**: Reference the deployed static resource `{!$Resource.Seqera_Logo}` in template header/footer for branding
+6. **Test template** by generating a sample quote PDF
+7. **Set as default** if this should be the primary template
+
+#### **Step 3: Verify Template Functionality**
+1. **Create a test quote** in production
+2. **Generate PDF** using the new template
+3. **Compare output** with partial org template
+4. **Test all template features** (conditional fields, calculations, etc.)
+5. **Verify branding** and formatting appear correctly
+
+---
+
 ## 💬 **Slack Integration Configuration**
 
 ### **⚠️ Slack App Connection Required**
@@ -206,6 +253,16 @@ If no production Slack app exists:
 - [ ] **Add Customer Logo Use Field** to Account page layout(s)
 - [ ] **Set Field-Level Security** for Customer Logo Use field
 - [ ] **Test Quote Record Page** - Verify Account.Customer_Logo_Use__c displays correctly
+
+### **📄 CRITICAL - Quote Template Configuration (Required for Quote PDFs)**
+
+- [ ] **Document Quote Template** configuration from partial org
+- [ ] **Take screenshots** of template layout and settings
+- [ ] **Create Quote Template** manually in production org
+- [ ] **Configure template layout** to match partial org template
+- [ ] **Add Seqera Logo** using static resource `{!$Resource.Seqera_Logo}` (✅ Already deployed)
+- [ ] **Test template** by generating sample quote PDF
+- [ ] **Set as default** template if applicable
 
 ### **💬 CRITICAL - Slack Integration Configuration (Required for Approval Notifications)**
 
