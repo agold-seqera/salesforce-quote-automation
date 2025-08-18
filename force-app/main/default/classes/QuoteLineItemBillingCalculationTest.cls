@@ -15,7 +15,7 @@ public class QuoteLineItemBillingCalculationTest {
         
         // Create test Products using TestDataFactory
         Product2 subscriptionProduct = TestDataFactory.createProduct('Subscription Product', 'Software Subscriptions');
-        Product2 serviceProduct = TestDataFactory.createProduct('Service Product', 'Professional Service');
+        Product2 serviceProduct = TestDataFactory.createProduct('Service Product', 'Professional Services');
         insert new List<Product2>{ subscriptionProduct, serviceProduct };
         
         // Create PricebookEntries using TestDataFactory
@@ -86,7 +86,7 @@ public class QuoteLineItemBillingCalculationTest {
     @isTest
     static void testTrigger_NonSubscription_NoCalculation() {
         Quote quote = [SELECT Id FROM Quote LIMIT 1];
-        PricebookEntry pbe = [SELECT Id, Product2Id FROM PricebookEntry WHERE Product2.Family = 'Professional Service' LIMIT 1];
+        PricebookEntry pbe = [SELECT Id, Product2Id FROM PricebookEntry WHERE Product2.Family = 'Professional Services' LIMIT 1];
         
         Test.startTest();
         

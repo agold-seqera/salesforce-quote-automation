@@ -622,9 +622,9 @@ public class ServiceDateHierarchyTest {
         
         // Create non-subscription product
         Product2 serviceProduct = new Product2(
-            Name = 'Professional Service Product',
+            Name = 'Professional Services Product',
             IsActive = true,
-            Family = 'Professional Service'  // Not Software Subscriptions
+            Family = 'Professional Services'  // Not Software Subscriptions
         );
         insert serviceProduct;
         

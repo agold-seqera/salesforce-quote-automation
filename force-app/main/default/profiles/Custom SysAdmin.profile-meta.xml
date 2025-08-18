@@ -9,7 +9,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OLIToQLIPricingFixTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>

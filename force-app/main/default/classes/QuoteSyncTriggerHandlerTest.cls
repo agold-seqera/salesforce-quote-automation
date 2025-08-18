@@ -18,7 +18,7 @@ private class QuoteSyncTriggerHandlerTest {
         
         // Create test products using TestDataFactory
         Product2 product1 = TestDataFactory.createProduct('Test Product 1', 'Software Subscriptions');
-        Product2 product2 = TestDataFactory.createProduct('Test Product 2', 'Professional Service');
+        Product2 product2 = TestDataFactory.createProduct('Test Product 2', 'Professional Services');
         insert new List<Product2>{product1, product2};
         
         // Create test pricebook entries using TestDataFactory

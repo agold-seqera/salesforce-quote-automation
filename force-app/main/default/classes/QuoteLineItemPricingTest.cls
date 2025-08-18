@@ -27,7 +27,7 @@ public class QuoteLineItemPricingTest {
         
         // Create Products using TestDataFactory
         Product2 softwareProduct = TestDataFactory.createProduct('Software Subscription Product', 'Software Subscriptions');
-        Product2 serviceProduct = TestDataFactory.createProduct('Professional Service Product', 'Professional Service');
+        Product2 serviceProduct = TestDataFactory.createProduct('Professional Services Product', 'Professional Services');
         insert new List<Product2>{ softwareProduct, serviceProduct };
         
         // Create PricebookEntries using TestDataFactory
@@ -106,13 +106,13 @@ public class QuoteLineItemPricingTest {
         
         Test.stopTest();
         
-        // Validate the generated Professional Service QLI
+        // Validate the generated Professional Services QLI
         QuoteLineItem serviceQLI = [
             SELECT Id, UnitPrice, Quantity, Discount, TotalPrice, Annual_Amount__c,
                    Total_Price__c, List_Price__c, Term_Length_Months__c, Product_Family__c
             FROM QuoteLineItem 
             WHERE QuoteId = :testQuote.Id 
-            AND Product_Family__c = 'Professional Service'
+            AND Product_Family__c = 'Professional Services'
             LIMIT 1
         ];
         

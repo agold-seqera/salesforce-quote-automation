@@ -15,7 +15,7 @@ public class QuoteLineItemTriggerHandlerTest {
         
         // Create test Products
         Product2 subscriptionProduct = TestDataFactory.createProduct('Subscription Product', 'Software Subscriptions');
-        Product2 serviceProduct = TestDataFactory.createProduct('Service Product', 'Professional Service');
+        Product2 serviceProduct = TestDataFactory.createProduct('Service Product', 'Professional Services');
         insert new List<Product2>{ subscriptionProduct, serviceProduct };
         
         // Create PricebookEntries
@@ -97,7 +97,7 @@ public class QuoteLineItemTriggerHandlerTest {
     @isTest
     static void testTriggerHandler_NonSubscription_FullAmount() {
         Quote quote = [SELECT Id FROM Quote LIMIT 1];
-        PricebookEntry pbe = [SELECT Id, Product2Id FROM PricebookEntry WHERE Product2.Family = 'Professional Service' LIMIT 1];
+        PricebookEntry pbe = [SELECT Id, Product2Id FROM PricebookEntry WHERE Product2.Family = 'Professional Services' LIMIT 1];
         
         QuoteLineItemTriggerHandler.resetStaticVariables();
         

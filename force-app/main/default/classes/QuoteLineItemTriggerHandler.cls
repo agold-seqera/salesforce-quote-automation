@@ -144,7 +144,7 @@ public class QuoteLineItemTriggerHandler {
                 Decimal proratedAmount = qli.List_Price__c * (qli.Quantity != null ? qli.Quantity : 1);
                 qli.Total_Price__c = proratedAmount * discountMultiplier;
             } else {
-                // For all other products (Professional Service, etc.): no proration
+                // For all other products (Professional Services, etc.): no proration
                 // List_Price__c shows full unit price (NO discount applied)
                 qli.List_Price__c = qli.UnitPrice;
                 
