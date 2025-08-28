@@ -131,18 +131,29 @@ public class QuoteLineItemTriggerHandler {
             // This ensures discount changes are immediately reflected
             qli.Annual_Amount__c = actualAnnualAmount;
             
-            // Calculate List_Price__c (customer-facing prorated unit price) and Total_Price__c
+            // Calculate List_Price__c (customer-facing unit price) and Total_Price__c
             if (qli.Product_Family__c == 'Software Subscriptions') {
                 // Use formula field Term_Length_Months__c if available, otherwise calculate
                 Decimal termLengthMonths = (qli.Term_Length_Months__c != null) ? 
                     qli.Term_Length_Months__c : getTermLengthMonths(qli);
                 
-                // List_Price__c shows prorated unit price for customer display (NO discount applied)
-                qli.List_Price__c = qli.UnitPrice * (termLengthMonths / 12);
-                
-                // Total_Price__c is the total prorated line amount WITH discount applied
-                Decimal proratedAmount = qli.List_Price__c * (qli.Quantity != null ? qli.Quantity : 1);
-                qli.Total_Price__c = proratedAmount * discountMultiplier;
+                if (termLengthMonths < 12) {
+                    // <1 year: Show prorated amounts (what customer actually pays)
+                    // List_Price__c shows prorated unit price for customer display (NO discount applied)
+                    qli.List_Price__c = qli.UnitPrice * (termLengthMonths / 12);
+                    
+                    // Total_Price__c is the total prorated line amount WITH discount applied
+                    Decimal proratedAmount = qli.List_Price__c * (qli.Quantity != null ? qli.Quantity : 1);
+                    qli.Total_Price__c = proratedAmount * discountMultiplier;
+                } else {
+                    // ≥1 year: Show annualized unit price but total contract value
+                    // List_Price__c shows annual unit price for customer display (NO discount applied)
+                    qli.List_Price__c = qli.UnitPrice;
+                    
+                    // Total_Price__c is the total contract value (annual amount × years) WITH discount applied
+                    Decimal totalContractValue = actualAnnualAmount * (termLengthMonths / 12);
+                    qli.Total_Price__c = totalContractValue;
+                }
             } else {
                 // For all other products (Professional Services, etc.): no proration
                 // List_Price__c shows full unit price (NO discount applied)

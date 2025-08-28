@@ -122,6 +122,49 @@ public class QuoteLineItemTriggerHandlerTest {
     }
     
     @isTest
+    static void testTriggerHandler_TermBasedPricing() {
+        Quote quote = [SELECT Id FROM Quote LIMIT 1];
+        PricebookEntry pbe = [SELECT Id, Product2Id FROM PricebookEntry WHERE Product2.Family = 'Software Subscriptions' LIMIT 1];
+        
+        QuoteLineItemTriggerHandler.resetStaticVariables();
+        
+        Test.startTest();
+        
+        // Test 1: <1 year deal (6 months) - should show prorated amounts
+        QuoteLineItem qli6Month = TestDataFactory.createQuoteLineItem(quote.Id, pbe.Product2Id, pbe.Id, 1, 12000);
+        qli6Month.Service_Start_Date__c = Date.today();
+        qli6Month.Service_End_Date__c = Date.today().addMonths(6); // 6 months
+        insert qli6Month;
+        
+        // Test 2: ≥1 year deal (18 months) - should show annualized amounts
+        QuoteLineItem qli18Month = TestDataFactory.createQuoteLineItem(quote.Id, pbe.Product2Id, pbe.Id, 1, 12000);
+        qli18Month.Service_Start_Date__c = Date.today();
+        qli18Month.Service_End_Date__c = Date.today().addMonths(18); // 18 months
+        insert qli18Month;
+        
+        Test.stopTest();
+        
+        // Verify term-based pricing logic
+        List<QuoteLineItem> qlis = [SELECT Id, Total_Price__c, Annual_Amount__c, List_Price__c, Term_Length_Months__c 
+                                    FROM QuoteLineItem WHERE Id IN (:qli6Month.Id, :qli18Month.Id) ORDER BY Term_Length_Months__c];
+        
+        QuoteLineItem qli6 = qlis[0]; // 6-month term
+        QuoteLineItem qli18 = qlis[1]; // 18-month term
+        
+        // 6-month term: should show prorated amounts
+        System.assertEquals(6, qli6.Term_Length_Months__c, '6-month term should be calculated correctly');
+        System.assertEquals(12000, qli6.Annual_Amount__c, 'Annual_Amount__c should always be annual value');
+        System.assertEquals(6000, qli6.List_Price__c, 'List_Price__c should be prorated for <1 year: $12k × 6/12 = $6k');
+        System.assertEquals(6000, qli6.Total_Price__c, 'Total_Price__c should be prorated for <1 year: $6k');
+        
+        // 18-month term: should show annualized unit price but total contract value
+        System.assertEquals(18, qli18.Term_Length_Months__c, '18-month term should be calculated correctly');
+        System.assertEquals(12000, qli18.Annual_Amount__c, 'Annual_Amount__c should always be annual value');
+        System.assertEquals(12000, qli18.List_Price__c, 'List_Price__c should be annual for ≥1 year: $12k');
+        System.assertEquals(18000, qli18.Total_Price__c, 'Total_Price__c should be total contract value for ≥1 year: $12k × 1.5 years = $18k');
+    }
+    
+    @isTest
     static void testTriggerHandler_BulkOperation() {
         Quote quote = [SELECT Id FROM Quote LIMIT 1];
         PricebookEntry pbe = [SELECT Id, Product2Id FROM PricebookEntry WHERE Product2.Family = 'Software Subscriptions' LIMIT 1];
